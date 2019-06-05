@@ -2,12 +2,26 @@ import React, { Component } from 'react'
 import User from './User'
 
 export class Users extends Component {
+
+  state = {
+    users: [
+      {name:"John", age:20},
+      {name:"Jill", age:30},
+      {name:"Peter", age:40},
+    ],
+    title:"Users List"
+  }
+
+
+
+
   render() {
     return (
       <div>
-        <User age="20">John</User>
-        <User age="30">Jill</User>
-        <User age="40">Peter</User>
+        <h1>{this.state.title}</h1>
+        <User age={this.state.users[0].age}>{this.state.users[0].name}</User>
+        <User age={this.state.users[1].age}>{this.state.users[1].name}</User>
+        <User age={this.state.users[2].age}>{this.state.users[2].name}</User>
       </div>
     )
   }
