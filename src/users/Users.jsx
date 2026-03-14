@@ -16,20 +16,11 @@ export class Users extends Component {
 
 
   makeMeYounger = () => {
-    
-    const newState = this.state.users.map((user)=> {
-      const tempUser = user
-      if (tempUser.age >= 20)
-      {
-      tempUser.age -= 10
-      }
-      
-      return tempUser
-    })
-    this.setState({
-      newState
-    })
-
+    const newUsers = this.state.users.map((user) => ({
+      ...user,
+      age: user.age >= 20 ? user.age - 10 : user.age,
+    }));
+    this.setState({ users: newUsers });
   }
 
   render() {
@@ -43,9 +34,9 @@ export class Users extends Component {
            <User age={this.state.users[2].age}>{this.state.users[2].name}</User>*/}
 
         {
-          this.state.users.map((user)=> {
-            return <User age={user.age}>{user.name}</User>
-          })
+          this.state.users.map((user) => (
+            <User key={user.name} age={user.age}>{user.name}</User>
+          ))
         }
       </div>
     )
